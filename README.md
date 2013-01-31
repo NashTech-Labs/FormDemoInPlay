@@ -3,7 +3,7 @@
 
 
 #What the project does, the problem it solves :-
-This project shows how to design forms in play2.0 using scala and mongod
+This project would explain how to design forms in play2.0 using scala and mongod
 
 In this project two functionality performed: SignIn and SignUp
 
