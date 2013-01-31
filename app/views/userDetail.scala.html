@@ -1,0 +1,9 @@
+@(userEntity: model.UserEntity) 
+@main(Html("User Created!")) {
+<fieldset>
+	<h1>Welcome @userEntity.emailId !</h1>
+            <small><a href="/editUserProfile/@userEntity.id">Edit Profile </a></small>
+	
+</fieldset>
+
+}

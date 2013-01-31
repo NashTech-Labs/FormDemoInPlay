@@ -1,0 +1,48 @@
+@(signupForm: Form[UserSignUpForm],message:String)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+    Sign Up Form in Play2.0
+}
+
+@main(title) {
+    
+    @helper.form(action = routes.Application.createUser) {
+        
+        <fieldset>
+            <legend>@message</legend>
+            
+           
+            
+            @inputText(
+                signupForm("email"), '_label -> "Email",
+                '_help -> "Enter a valid email address."
+            )
+            
+            @inputPassword(
+                signupForm("password.main"), 
+                '_label -> "Password",
+                '_help -> "A password must be at least 6 characters. "
+            )
+            
+            @inputPassword(
+                signupForm("password.confirm"), 
+                '_label -> "Repeat password",
+                '_help -> "Please repeat your password again.",
+                '_error -> signupForm.error("password")
+            )
+            
+        </fieldset>
+        
+              
+       
+        
+        <div class="actions">
+            <input type="submit" class="btn primary" value="Sign Up">
+        </div>
+        
+    }
+    
+}

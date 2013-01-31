@@ -1,0 +1,39 @@
+@(loginForm:Form[LoginForm],message:String)
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+    Form Demo in Play2.0
+}
+
+@main(title) {
+
+    
+   @helper.form(action = routes.Application.authenticateUser) {
+        
+        <fieldset>
+            <legend>@message</legend>
+                       
+            @inputText(
+                loginForm("email"), '_label -> "Email ",
+                '_help -> "Enter a valid email address."
+            )
+            
+            @inputPassword(
+                loginForm("password"), 
+                '_label -> "Password",
+                '_help -> "A password must be at least 6 characters. "
+            )
+                        
+        </fieldset>
+        
+         <div class="actions">
+            <input type="submit" class="btn primary" value="Log in ">
+            Or
+            <small><a href="@routes.Application.siginUpForm">Sign Up </a></small>
+            
+        </div>
+        
+       }
+    
+}

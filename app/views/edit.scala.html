@@ -1,0 +1,49 @@
+@(signupForm: Form[UserSignUpForm],userEntity: model.UserEntity)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+   Edit Form in Play2.0
+}
+
+@main(title) {
+    
+    @helper.form(action = routes.Application.editUser(userEntity.id.toString)) {
+        
+        <fieldset>
+            <legend>Edit User Profile</legend>
+            
+            @inputText(
+                signupForm("email"), 
+                '_label -> "First name",
+                '_help -> "Enter a valid email address."
+            )
+            
+            
+            @inputPassword(
+                signupForm("password.main"), 
+                '_label -> "Password",
+                '_help -> "A password must be at least 6 characters. "
+            )
+            
+            @inputPassword(
+                signupForm("password.confirm"), 
+                '_label -> "Repeat password",
+                '_help -> "Please repeat your password again.",
+                '_error -> signupForm.error("password")
+            )
+            
+        </fieldset>
+        
+              
+       
+        
+        <div class="actions">
+            <input type="submit" class="btn primary" value="Save">
+            <a href="/editUserProfile/@userEntity.id"><input type="button" value="Cancel" class="btn-primary"/> </a>
+        </div>
+        
+    }
+    
+}
