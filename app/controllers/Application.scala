@@ -8,6 +8,7 @@ import play.api.data.Forms._
 import model.UserEntity
 import org.bson.types.ObjectId
 import model.User
+import routes.javascript._
 
 case class LoginForm(email: String, password: String)
 case class UserSignUpForm(email: String, password: String)
@@ -121,4 +122,27 @@ object Application extends Controller {
       })
   }
 
+  def isEmailExist(email: String) = Action { implicit request =>
+    User.findUserByEmail(email).isEmpty match {
+      case true => Ok("false")
+      case false => Ok("true")
+    }
+  }
+  //  public static Result javascriptRoutes() {
+  //    response().setContentType("text/javascript");
+  //    return ok(Routes.javascriptRouter(
+  //        "jsRoutes",
+  //        routes.javascript.Application.sayHello(),
+  //        routes.javascript.Application.sayHelloToString(),
+  //        routes.javascript.Application.sayHelloToJson(),
+  //        routes.javascript.Application.sayHelloWithJson()));
+  //  }
+
+  // Javascript routing
+  def javascriptRoutes = Action { implicit request =>
+    import routes.javascript._
+    Ok(
+      Routes.javascriptRouter("jsRoutes")( routes.javascript.Application.isEmailExist
+      )).as("text/javascript")
+  }
 }

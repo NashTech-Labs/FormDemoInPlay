@@ -12,7 +12,7 @@
    @helper.form(action = routes.Application.authenticateUser) {
         
         <fieldset>
-            <legend>@message</legend>
+            <legend>@title</legend>
                        
             @inputText(
                 loginForm("email"), '_label -> "Email ",
@@ -28,9 +28,10 @@
         </fieldset>
         
          <div class="actions">
-            <input type="submit" class="btn primary" value="Log in ">
-            Or
+            <input type="submit" class="btn primary" value="Sign in ">
+               Or
             <small><a href="@routes.Application.siginUpForm">Sign Up </a></small>
+         
             
         </div>
         

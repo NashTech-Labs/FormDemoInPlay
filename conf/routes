@@ -10,6 +10,10 @@ GET    /signUpForm					controllers.Application.siginUpForm
 POST   /signUp						controllers.Application.createUser
 GET    /editUserProfile/:userId		controllers.Application.editUserProfile(userId:String)
 POST   /editUser/:userId			controllers.Application.editUser(userId: String)
+GET  /isEmailExist/:email			controllers.Application.isEmailExist(email: String)
+
+# Javascript routing
+GET /javascriptRoutes               controllers.Application.javascriptRoutes
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

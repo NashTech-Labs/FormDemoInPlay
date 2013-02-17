@@ -8,6 +8,8 @@
 }
 
 @main(title) {
+
+<div id="alert-box"></div>
     
     @helper.form(action = routes.Application.createUser) {
         
@@ -17,7 +19,7 @@
            
             
             @inputText(
-                signupForm("email"), '_label -> "Email",
+                signupForm("email"), '_label -> "Email",'onBlur->"isEmailExist()",
                 '_help -> "Enter a valid email address."
             )
             
@@ -40,9 +42,49 @@
        
         
         <div class="actions">
-            <input type="submit" class="btn primary" value="Sign Up">
+            <input type="submit" class="btn primary" value="Sign Up" >
         </div>
         
+   
     }
+  
+
+  <script type="text/javascript">
+  var successFn = function(data) {
+   if(data == "true"){
+	   $('#alert-box').html('');
+	   $("#alert-box").append('<div class="alert alert-error">' + '<a class="close" data-dismiss="alert">×</a>  ' +
+			   '<strong>Error!</strong>Email Id Already exist ! '+ '</div>');
+   }
+   else{
+	   $('#alert-box').html('');
+	   $("#alert-box").append('<div class="alert alert-success">' + '<a class="close" data-dismiss="alert">×</a>  ' +
+			   '<strong>Success!</strong>Valid Email Id ! '+ '</div>');
+	   }
+   console.debug("Success of Ajax Call");
+   console.debug(data);
+  };
+  var errorFn = function(err) {
+   console.debug("Error of ajax Call");
+   console.debug(err);
+  }
+   
+  ajax1 = {
+    success: successFn,
+    error: errorFn
+  }
+  
+  function isEmailExist() {
+  	var idToGet = $("#email").val();
+    
+jsRoutes.controllers.Application.isEmailExist(idToGet)
+.ajax(ajax1);
+
+    }
+  </script>
+  
+  
     
 }
+      
+        
